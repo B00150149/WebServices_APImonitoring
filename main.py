@@ -31,7 +31,7 @@ class Product(BaseModel):
     UnitPrice: float
     StockQuantity: int
     Description: str
-
+    
 @app.get("/getAll")
 def getAll():
     products = list(collection.find({}, {"_id" : 0}))
@@ -98,3 +98,11 @@ def convert(product_ID: int):
         "PriceUSD": price_usd,
         "PriceEUR": round(price_euro, 2)
     }
+
+@app.get("/health")
+def health():
+    try:
+        client.admin.command("ping")
+        return {"status": "healthy"}
+    except:
+        return {"status": "unhealthy"}

@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
 from pydantic import BaseModel
-# from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_fastapi_instrumentator import Instrumentator
 import requests
 
 
 app = FastAPI()
 
-# instrumentator = Instrumentator()
-# instrumentator.instrument(app).expose(app)
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
 
 client = MongoClient("mongodb+srv://admin:password001$@cluster0.qcvivpa.mongodb.net/?appName=Cluster0")
 
